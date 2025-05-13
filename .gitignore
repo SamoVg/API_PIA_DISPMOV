@@ -1,0 +1,83 @@
+# Byte-compiled / optimized / DLL files
+*__pycache__
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+*venv310
+
+
+# Virtual environment
+venv310/
+env/
+.venv/
+.env/
+
+# FastAPI + Uvicorn/Pydantic temporary files
+*.log
+*.db
+instance/
+*.sqlite3
+
+# VS Code or PyCharm settings
+.vscode/
+.idea/
+
+# macOS system files
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Test results
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+
+# Build artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.cache/
+
+# Bandit security scans
+bandit.json
+
+# dotenv (optional: if you're using python-dotenv)
+.env
+.env.*
+
+# Local databases or state files
+*.sqlite
+*.db
+
+# Logs
+*.log
+
+# Uvicorn PID file (if used)
+uvicorn.pid
