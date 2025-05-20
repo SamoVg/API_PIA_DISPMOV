@@ -12,10 +12,6 @@ router = APIRouter(
 
 @router.post("/RegistrarAsistenciaHoy/{idGrupo}")
 async def RegistrarAsistenciaHoy(idGrupo:str, image: UploadFile = File(...)):
-    fecha_hoy = datetime.now().date()
-    fecha_manana = fecha_hoy + timedelta(days=1)
-    fecha_str = str(fecha_manana)
-
     image_bytes = await image.read()
     faces= ObtenerCarasGrupo(idGrupo)
     if "error" in faces:
@@ -26,7 +22,8 @@ async def RegistrarAsistenciaHoy(idGrupo:str, image: UploadFile = File(...)):
     if match is None:
         return {"error": "No se detectó ninguna cara en la imagen."}
     alumno = ObtenerAlumnoPorId(match,idGrupo)
-    resultAsistencia = RegistrarAsistenciaAlumno(idGrupo, fecha_str, alumno["matricula"])
+
+    resultAsistencia = RegistrarAsistenciaAlumno(idGrupo, str(datetime.now().date()), alumno["matricula"])
     if "error" in resultAsistencia:
         return {"error": resultAsistencia["error"]}
     if "error" in alumno:
