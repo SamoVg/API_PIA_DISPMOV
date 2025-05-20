@@ -1,0 +1,12 @@
+{
+    "idGrupo": "3C",
+    "alumnos": [
+        {
+            "idAlumno": "aeba2e0d-4b8d-4eee-b574-01f2b63ae538",
+            "nombres": "as",
+            "matricula": 120,
+            "apellidos": "string",
+            "idCara": 0
+        }
+    ]
+}

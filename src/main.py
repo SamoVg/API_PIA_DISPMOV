@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pydantic import BaseModel, validator
 from datetime import datetime, date
-from json_factory import CrearGrupo,AgregarAlumnoGrupo,AgregarCaraAlumno,ObtenerIdAlumno
+from utility.json_factory import CrearGrupo,AgregarAlumnoGrupo,AgregarCaraAlumno,ObtenerIdAlumno
 from  models.alumno import AlumnoRequest,AlumnoModel
 import uuid
 app = FastAPI()

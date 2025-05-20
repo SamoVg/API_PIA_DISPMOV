@@ -1,0 +1,12 @@
+{
+    "idGrupo": "5C",
+    "alumnos": [
+        {
+            "idAlumno": "d1fd7339-fe84-494a-92ce-fd6a32890e1a",
+            "nombres": "string",
+            "matricula": 0,
+            "apellidos": "string",
+            "idCara": 0
+        }
+    ]
+}

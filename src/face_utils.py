@@ -1,22 +1,8 @@
 import face_recognition
 import base64
-import json
 import numpy as np
 from io import BytesIO
 from PIL import Image
-
-DB_FILE = "grupos/faces_db.json"
-
-def load_db():
-    try:
-        with open(DB_FILE, "r") as f:
-            return json.load(f)
-    except:
-        return {}
-
-def save_db(db):
-    with open(DB_FILE, "w") as f:
-        json.dump(db, f)
 
 def image_to_encoding(image_bytes):
     image = Image.open(BytesIO(image_bytes)).convert("RGB")
@@ -44,11 +30,10 @@ def save_face_encoding(image_bytes):
     encode = base64.b64encode(encoding.tobytes()).decode("utf-8")
     return encode
 
-def recognize_face(image_bytes):
+def recognize_face(image_bytes,items):
     print("Reconociendo rostro...")
     
     # Cargar la base de datos (aquí se espera que db tenga nombres como claves y los valores sean las representaciones codificadas en base64)
-    db = load_db()  
     
     # Generar el "encoding" de la imagen desconocida
     unknown_encoding = image_to_encoding(image_bytes)
@@ -57,7 +42,7 @@ def recognize_face(image_bytes):
         return False
     
     # Iterar sobre todas las entradas de la base de datos para comparar las imágenes
-    for name, encoded_face in db.items():
+    for name, encoded_face in items:
         known_encoding = np.frombuffer(base64.b64decode(encoded_face), dtype=np.float64)
         
         # Comparar la imagen desconocida con la imagen conocida

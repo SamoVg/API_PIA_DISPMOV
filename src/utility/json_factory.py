@@ -4,8 +4,8 @@ import json
 import uuid
 from  models.alumno import AlumnoModel
 
-DB_RUTA = "grupos"
-DB_CARAS = "caras/grupos_caras.json"
+DB_RUTA = "./data/grupos"
+DB_CARAS = "./data/caras/grupos_caras.json"
 
 def CrearGrupo(identificadorGrupo:str ):
     print("Creando grupo con el nombre: " + identificadorGrupo)
