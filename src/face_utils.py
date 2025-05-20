@@ -5,7 +5,7 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 
-DB_FILE = "faces_db.json"
+DB_FILE = "grupos/faces_db.json"
 
 def load_db():
     try:
@@ -37,15 +37,12 @@ def image_to_encoding(image_bytes):
     encodings = face_recognition.face_encodings(np_image, face_locations)
     return encodings[0] if encodings else None
 
-def save_face_encoding(name, image_bytes):
+def save_face_encoding(image_bytes):
     encoding = image_to_encoding(image_bytes)
     if encoding is None:
         return "No face detected"
-
-    db = load_db()
-    db[name] = base64.b64encode(encoding.tobytes()).decode("utf-8")
-    save_db(db)
-    return "Saved"
+    encode = base64.b64encode(encoding.tobytes()).decode("utf-8")
+    return encode
 
 def recognize_face(image_bytes):
     print("Reconociendo rostro...")
