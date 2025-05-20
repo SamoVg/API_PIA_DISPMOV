@@ -1,0 +1,17 @@
+{
+    "idGrupo": "A20",
+    "alumnos": [
+        {
+            "idAlumno": "bcad3976-8269-4d18-b7f0-570740ca3147",
+            "nombres": "brandon",
+            "matricula": 20,
+            "apellidos": "Rodriguez"
+        },
+        {
+            "idAlumno": "9dd1f449-e62b-4cd7-88ac-ba5d18884589",
+            "nombres": "Camila",
+            "matricula": 12,
+            "apellidos": "Cabello"
+        }
+    ]
+}

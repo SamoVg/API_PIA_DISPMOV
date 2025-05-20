@@ -58,3 +58,13 @@ def ObtenerAlumnoPorId(idAlumno:str,grupo:str):
     for alumno in datos["alumnos"]:
         if alumno["idAlumno"] == idAlumno:
             return alumno
+    
+def ObtenerAlumnosGrupo(grupo:str,matriculas:list):
+    ruta = os.path.join(DB_RUTA, f"{grupo}.json")
+    if not os.path.exists(ruta):
+        return {"error": "El grupo no existe."}
+    
+    with open(ruta, "r", encoding="utf-8") as f:
+        datos = json.load(f)
+    alumnos = [alumno for alumno in datos["alumnos"] if alumno["matricula"] in matriculas]
+    return alumnos

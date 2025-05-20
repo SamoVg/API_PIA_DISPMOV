@@ -1,11 +1,10 @@
-from fastapi import APIRouter,UploadFile, File
-from face_utils import save_face_encoding, recognize_face
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import APIRouter
 from pydantic import BaseModel
 from pydantic import BaseModel
-from datetime import datetime, date
-from utility.caras_json_factory import AgregarCaraAlumno,AgregarGrupoACaras,ObtenerCarasGrupo
-from utility.grupo_json_factory import CrearGrupo, AgregarAlumnoGrupo, ObtenerIdAlumno,ObtenerAlumnoPorId
+from datetime import  date
+from utility.caras_json_factory import AgregarGrupoACaras
+from utility.grupo_json_factory import CrearGrupo, AgregarAlumnoGrupo
+from utility.asistencias_json_factory import CrearGrupoAsistencias
 from  models.alumno import AlumnoRequest,AlumnoModel
 import uuid
 class FechaRequest(BaseModel):
@@ -31,6 +30,9 @@ def create_group(identificadorGrupo:str ):
     responseCaras = AgregarGrupoACaras(identificadorGrupo)
     if("error" in responseCaras):
         return {"error": responseCaras["error"]}
+    responseAsistencias = CrearGrupoAsistencias(identificadorGrupo)
+    if("error" in responseAsistencias):
+        return {"error": responseAsistencias["error"]}
     return response
   
 
