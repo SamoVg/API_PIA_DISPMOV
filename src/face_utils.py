@@ -30,25 +30,32 @@ def save_face_encoding(image_bytes):
     encode = base64.b64encode(encoding.tobytes()).decode("utf-8")
     return encode
 
-def recognize_face(image_bytes,items):
+def recognize_face(image_bytes, items):
     print("Reconociendo rostro...")
-    
-    # Cargar la base de datos (aquí se espera que db tenga nombres como claves y los valores sean las representaciones codificadas en base64)
-    
-    # Generar el "encoding" de la imagen desconocida
+
+    # Generar el encoding de la imagen desconocida
     unknown_encoding = image_to_encoding(image_bytes)
-    
+
     if unknown_encoding is None:
         return False
-    
-    # Iterar sobre todas las entradas de la base de datos para comparar las imágenes
-    for name, encoded_face in items:
-        known_encoding = np.frombuffer(base64.b64decode(encoded_face), dtype=np.float64)
-        
-        # Comparar la imagen desconocida con la imagen conocida
-        match = face_recognition.compare_faces([known_encoding], unknown_encoding)[0]
-        
-        if match:
-            return name  # Si hay coincidencia, devolver el nombre asociado a la imagen
 
-    return False  # Si no se encuentra ninguna coincidencia
+    # Iterar sobre la lista de diccionarios con 'idAlumno' y 'cara'
+    for alumno in items:
+        id_alumno = alumno.get("idAlumno")
+        cara_base64 = alumno.get("cara")
+
+        if not id_alumno or not cara_base64:
+            continue  # Ignorar si falta algún dato
+
+        try:
+            known_encoding = np.frombuffer(base64.b64decode(cara_base64), dtype=np.float64)
+        except Exception as e:
+            print(f"Error al decodificar la cara de {id_alumno}: {e}")
+            continue
+
+        match = face_recognition.compare_faces([known_encoding], unknown_encoding)[0]
+
+        if match:
+            return id_alumno
+
+    return False

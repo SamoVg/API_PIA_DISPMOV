@@ -49,3 +49,12 @@ def AgregarCaraAlumno(idAlumno:str,idGrupo:str, cara:str):
 
     return {"status": "Cara agregada exitosamente", "idAlumno": str(idAlumno), "idGrupo": idGrupo}
 
+def ObtenerCarasGrupo(idGrupo:str):
+    with open(DB_CARAS,"r",encoding="utf-8") as f:
+        datos = json.load(f)
+    if idGrupo not in datos:
+        return {"error": f"El grupo '{idGrupo}' no existe."}
+    grupo = datos[idGrupo]
+    if "alumnosCaras" not in grupo:
+        return {"error": f"El grupo '{idGrupo}' no tiene caras registradas."}
+    return grupo["alumnosCaras"]

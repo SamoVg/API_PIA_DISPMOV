@@ -7,6 +7,13 @@
             "matricula": 0,
             "apellidos": "string",
             "idCara": 0
+        },
+        {
+            "idAlumno": "7e23ee8d-0ac2-4890-b673-1c579a1b61cf",
+            "nombres": "LA ROCA",
+            "matricula": 20,
+            "apellidos": "perro ",
+            "idCara": 0
         }
     ]
 }
