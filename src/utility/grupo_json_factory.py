@@ -28,7 +28,8 @@ def AgregarAlumnoGrupo(identificadorGrupo:str, alumno:AlumnoModel):
 
     if "alumnos" not in datos:
         datos["alumnos"] = []
-
+    if any(a["matricula"] == alumno.matricula for a in datos["alumnos"]):
+        return {"error": "esta matricula ya está registrado en el grupo."}
     datos["alumnos"].append(alumno.to_dict())
 
     with open(ruta, "w", encoding="utf-8") as f:

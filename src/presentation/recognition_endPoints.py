@@ -31,6 +31,12 @@ async def register(matricula:int,grupo:str, image: UploadFile = File(...)):
     idAlumno=ObtenerIdAlumno(matricula,grupo)
     if "error" in idAlumno:
         return {"error": idAlumno["error"]}
+    faces= ObtenerCarasGrupo(grupo)
+    if "error" in faces:
+        return {"error": faces["error"]}
+    match = recognize_face(image_bytes, faces)
+    if match is not False:
+        return {"error": "Ya existe una alumno registrado con esta cara."}
     result = AgregarCaraAlumno(idAlumno, grupo, imageEncode)
     if "error" in result:
         return {"error": result["error"]}

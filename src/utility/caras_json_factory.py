@@ -58,3 +58,4 @@ def ObtenerCarasGrupo(idGrupo:str):
     if "alumnosCaras" not in grupo:
         return {"error": f"El grupo '{idGrupo}' no tiene caras registradas."}
     return grupo["alumnosCaras"]
+

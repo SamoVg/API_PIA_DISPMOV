@@ -12,6 +12,12 @@
             "nombres": "Camila",
             "matricula": 12,
             "apellidos": "Cabello"
+        },
+        {
+            "idAlumno": "1710f69e-dfbe-48a8-9750-d34f950a5b32",
+            "nombres": "pEPA",
+            "matricula": 1,
+            "apellidos": "string"
         }
     ]
 }
