@@ -2,17 +2,18 @@ from fastapi import FastAPI, UploadFile, File, Form
 from face_utils import save_face_encoding, recognize_face
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from pydantic import BaseModel, validator
+from pydantic import BaseModel
 from datetime import datetime, date
-from utility.json_factory import CrearGrupo,AgregarAlumnoGrupo,AgregarCaraAlumno,ObtenerIdAlumno
+from utility.caras_json_factory import AgregarCaraAlumno,AgregarGrupoACaras
+from utility.grupo_json_factory import CrearGrupo, AgregarAlumnoGrupo, ObtenerIdAlumno
 from  models.alumno import AlumnoRequest,AlumnoModel
 import uuid
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],      # Permite todos los orígenes
+    allow_origins=["*"],     
     allow_credentials=True,
-    allow_methods=["*"],      # Permite todos los métodos HTTP
+    allow_methods=["*"],      
     allow_headers=["*"]         
 )
 class FechaRequest(BaseModel):
@@ -28,6 +29,11 @@ async def get_lista(request: FechaRequest):
 def create_group(identificadorGrupo:str ):
     identificadorGrupo.upper()
     response =CrearGrupo(identificadorGrupo)
+    if("error" in response):
+        return {"error": response["error"]}
+    responseCaras = AgregarGrupoACaras(identificadorGrupo)
+    if("error" in responseCaras):
+        return {"error": responseCaras["error"]}
     return response
   
 @app.post("/registerFace")

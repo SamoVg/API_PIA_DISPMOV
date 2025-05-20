@@ -1,0 +1,19 @@
+{
+    "idGrupo": "A12",
+    "alumnos": [
+        {
+            "idAlumno": "534d56ad-be9a-4abc-a560-8bdd6906d448",
+            "nombres": "string",
+            "matricula": 0,
+            "apellidos": "string",
+            "idCara": 0
+        },
+        {
+            "idAlumno": "432a3d1c-ca82-46e8-a9e2-0557e9b7d749",
+            "nombres": "string",
+            "matricula": 20,
+            "apellidos": "string",
+            "idCara": 0
+        }
+    ]
+}
