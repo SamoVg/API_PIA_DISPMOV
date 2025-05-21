@@ -2,7 +2,7 @@ from fastapi import APIRouter, UploadFile, File
 from face_utils import recognize_face, save_face_encoding
 from utility.caras_json_factory import ObtenerCarasGrupo, AgregarCaraAlumno
 from utility.grupo_json_factory import ObtenerAlumnoPorId, ObtenerIdAlumno
-from models.responseApi import ResponseWrapper  # Ajusta si está en otro módulo
+from models.responseApi import ResponseWrapper  
 
 router = APIRouter(
     prefix="/FaceRecognition",
@@ -27,7 +27,6 @@ async def recognize(idGrupo: str, image: UploadFile = File(...)):
         return ResponseWrapper(success=False, message=alumno["error"]).to_dict()
 
     return ResponseWrapper(data=alumno, message="Alumno reconocido correctamente").to_dict()
-
 @router.post("/RegistrarCara/{grupo}")
 async def register(matricula: int, grupo: str, image: UploadFile = File(...)):
     image_bytes = await image.read()

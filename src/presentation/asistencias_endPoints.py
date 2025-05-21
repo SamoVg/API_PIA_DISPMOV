@@ -4,8 +4,7 @@ from utility.caras_json_factory import ObtenerCarasGrupo
 from utility.grupo_json_factory import ObtenerAlumnoPorId, ObtenerAlumnosGrupoPorMatricula
 from utility.asistencias_json_factory import RegistrarAsistenciaAlumno, ObtenerAsistencias
 from datetime import datetime
-from models.responseApi import ResponseWrapper  # Asegúrate que esta ruta sea correcta
-
+from models.responseApi import ResponseWrapper  
 router = APIRouter(
     prefix="/Asistencia",
     tags=["Asistencias"],
