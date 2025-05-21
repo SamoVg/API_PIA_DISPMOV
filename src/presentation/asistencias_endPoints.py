@@ -1,7 +1,7 @@
 from fastapi import APIRouter,UploadFile, File,Query
 from face_utils import  recognize_face
 from utility.caras_json_factory import ObtenerCarasGrupo
-from utility.grupo_json_factory import ObtenerAlumnoPorId,ObtenerAlumnosGrupo
+from utility.grupo_json_factory import ObtenerAlumnoPorId,ObtenerAlumnosGrupoPorMatricula
 from utility.asistencias_json_factory import RegistrarAsistenciaAlumno,ObtenerAsistencias
 from datetime import datetime,timedelta
 
@@ -57,7 +57,7 @@ async def AsistenciasGrupo(idGrupo:str,fecha:str = Query(..., regex=r"^\d{4}-\d{
     asistencias=ObtenerAsistencias(idGrupo,fecha)
     if "error" in asistencias:
         return {"error": asistencias["error"]}
-    alumnos = ObtenerAlumnosGrupo(idGrupo,asistencias)
+    alumnos = ObtenerAlumnosGrupoPorMatricula(idGrupo,asistencias)
     if "error" in alumnos:
         return {"error": alumnos["error"]}
     

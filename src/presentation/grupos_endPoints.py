@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from pydantic import BaseModel
 from datetime import  date
 from utility.caras_json_factory import AgregarGrupoACaras
-from utility.grupo_json_factory import CrearGrupo, AgregarAlumnoGrupo
+from utility.grupo_json_factory import CrearGrupo, AgregarAlumnoGrupo,ObtenerGrupos,ObtenerAlumnosGrupo
 from utility.asistencias_json_factory import CrearGrupoAsistencias
 from  models.alumno import AlumnoRequest,AlumnoModel
 import uuid
@@ -15,12 +15,6 @@ router=APIRouter(
     tags=["Grupos"]
 )
 
-@router.post("/ObtenerListaDia")
-async def get_lista(request: FechaRequest):
-  return {
-        "fecha_recibida": request.fecha,
-        "tipo": str(type(request.fecha))
-    }
 @router.post("/CrearGrupo")
 def create_group(identificadorGrupo:str ):
     identificadorGrupo.upper()
@@ -48,3 +42,17 @@ async def register_student_data(Alumno: AlumnoRequest,grupo:str):
     print(alumno)
     result = AgregarAlumnoGrupo(grupo, alumno)
     return result
+
+@router.get("/ObtenerTodosGrupos")
+def get_all_groups():
+    grupos=ObtenerGrupos()
+    if("error" in grupos):
+        return {"error": grupos["error"]}
+    return grupos
+
+@router.get("/ObtenerAlumnosGrupo/{grupo}")
+def get_students_by_group(grupo:str):
+    alumnos=ObtenerAlumnosGrupo(grupo)
+    if("error" in alumnos):
+         return {"error": alumnos["error"]}
+    return alumnos
